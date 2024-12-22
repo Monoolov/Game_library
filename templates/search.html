@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Search Results</h1>
+    <ul id="game-list">
+        {% for game in games %}
+            <li id="game-{{ game.id }}">
+                <h2>{{ game.title }}</h2>
+                <p>Genre: {{ game.genre }}</p>
+                <p>Year: {{ game.year }}</p>
+                <p>Developer: {{ game.developer }}</p>
+                <p>Publisher: {{ game.publisher }}</p>
+                <p>Platform: {{ game.platform }}</p>
+                <p>Critic Score: {{ game.criticscore }}</p>
+                <p>User Score: {{ game.userscore }}</p>
+                <p><img src="{{ game.poster }}" alt="{{ game.title }} poster" style="max-width: 200px;"></p>
+                <p><button type="button" class="played-button" data-game-id="{{ game.id }}" data-genre="{{ genre }}" data-offset="{{ offset }}" data-excluded-ids="{{ excluded_ids|tojson }}">Уже играл</button></p>
+            </li>
+        {% endfor %}
+    </ul>
+    {% if genre and offset and excluded_ids %}
+    {% endif %}
+    <a href="{{ url_for('index') }}">Back to Home</a>
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</body>
+</html>

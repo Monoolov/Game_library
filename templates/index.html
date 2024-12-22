@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Library</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Game Library</h1>
+    <form id="search-form" action="{{ url_for('search') }}" method="post">
+        <input class="filt" type="text" name="title" placeholder="Title">
+        <input class="filt" type="text" name="genre" placeholder="Genre">
+        <input class="filt" type="text" name="developer" placeholder="Developer">
+        <input class="filt"type="text" name="criticscore" placeholder="Critic Score">
+        <button id="searchh" type="submit">Search</button>
+    </form>
+    <ul id="game-list">
+        <!-- Games will be displayed here -->
+    </ul>
+    <button id="show-more" style="display:none;">Show More</button>
+    <a href="{{ url_for('recommendations') }}">Get Recommendations</a>
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</body>
+</html>
+

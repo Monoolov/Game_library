@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recommendations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+    <h1>Recommendations</h1>
+    <form id="recommendation-form" action="{{ url_for('recommendations') }}" method="post">
+        <input type="text" name="title" placeholder="Title">
+        <button type="submit">Get Recommendations</button>
+    </form>
+    <ul id="recommendations-list">
+        {% for game in recommendations %}
+            <li id="game-{{ game.id }}">
+                <h2>{{ game.title }}</h2>
+                <p>Genre: {{ game.genre }}</p>
+                <p>Year: {{ game.year }}</p>
+                <p>Developer: {{ game.developer }}</p>
+                <p>Publisher: {{ game.publisher }}</p>
+                <p>Platform: {{ game.platform }}</p>
+                <p>Critic Score: {{ game.criticscore }}</p>
+                <p>User Score: {{ game.userscore }}</p>
+                <p><img src="{{ game.poster }}" alt="{{ game.title }} poster" style="max-width: 200px;"></p>
+                <p><button class="played-button" data-game-id="{{ game.id }}" data-genre="{{ game.genre }}" data-offset="0" data-excluded-ids="[]">Уже играл</button></p>
+            </li>
+        {% endfor %}
+    </ul>
+    {% if recommendations %}
+
+    {% endif %}
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>
